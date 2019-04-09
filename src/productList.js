@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from "axios";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import './productList.css';
 
 let result;
@@ -7,6 +8,7 @@ class ProductList extends Component {
     state = {
         products: []
     };
+
 
     componentDidMount() {
         axios.get('https://my-json-server.typicode.com/tdmichaelis/json-api/products')
@@ -19,23 +21,22 @@ class ProductList extends Component {
     }
 
     renderedList(){
-
         return this.state.products.map(product => {
            return (
-               <div key={product.id} id={product.id}>
-                   {/*<h1 className="title">{product.title}</h1>*/}
-                   {/*<div className="description">{product.description}</div>*/}
-                   {/*<div className="price">{product.price}</div>*/}
-                   {/*<div className="rating">${product.rating}</div>*/}
+               <Link to="/details/" key={product.id} id={product.id} className="product" onClick={() => {this.details(product)}}>
                    <img className="img" src={product.img} alt={product.title}/>
-               </div>
+               </Link>
            )
         });
     }
 
+    details(product){
+        console.log(product);
+    }
+
     render() {
         return(
-            <div>{this.renderedList()}</div>
+            <div className="productList">{this.renderedList()}</div>
         )
     }
 }
