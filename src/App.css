@@ -1,0 +1,11 @@
+.links{
+    display: flex;
+}
+
+.link{
+    padding: 5px;
+}
+
+h2{
+    padding: 20px;
+}
