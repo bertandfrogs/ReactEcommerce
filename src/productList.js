@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import axios from "axios";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './productList.css';
 
 let result;
+
 class ProductList extends Component {
     state = {
         products: []
@@ -23,20 +24,21 @@ class ProductList extends Component {
     renderedList(){
         return this.state.products.map(product => {
            return (
-               <Link to="/details/" key={product.id} id={product.id} className="product" onClick={() => {this.details(product)}}>
-                   <img className="img" src={product.img} alt={product.title}/>
-               </Link>
+               <div key={product.id} id={product.id} className="product">
+                   <Link to={'/details/' + product.id}>
+                       <img className="img" src={product.img} alt={product.title}/>
+                   </Link>
+               </div>
            )
         });
     }
 
-    details(product){
-        console.log(product);
-    }
-
     render() {
         return(
-            <div className="productList">{this.renderedList()}</div>
+            <div>
+                <input type="text" placeholder="Search..."></input>
+                <div className="productList">{this.renderedList()}</div>
+            </div>
         )
     }
 }
