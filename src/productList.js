@@ -24,6 +24,7 @@ class ProductList extends Component {
     }
 
     renderedList(){
+
         initialList = store.getState();
 
         if(this.state.list.length === 0 && this.state.inputValue === ""){
@@ -40,11 +41,6 @@ class ProductList extends Component {
                 )
             });
         }
-        else if(this.state.list.length === 0 && this.state.inputValue !== ""){
-            return (
-                <div className="noResults">No results found for "{this.state.inputValue}".</div>
-            );
-        }
         else{
             return this.state.list.map(product => {
                 return (
@@ -60,15 +56,30 @@ class ProductList extends Component {
     }
 
     render() {
-        return(
-            <div className="pageWrapper">
-                <div className="ui icon input searchBar">
-                    <input type='text' placeholder='Search items...' value={this.state.inputValue} onChange={this.filterList}/>
-                    <i aria-hidden="true" className="search icon"/>
+        if(this.state.list.length === 0 && this.state.inputValue !== ""){
+            return (
+                <div className="pageWrapper">
+                    <div className="ui icon input searchBar">
+                        <input type='text' placeholder='Search items...' value={this.state.inputValue}
+                               onChange={this.filterList}/>
+                        <i aria-hidden="true" className="search icon"/>
+                    </div>
+                    <div className="noResults">No results found for "{this.state.inputValue}".</div>
                 </div>
-                <div className="productList">{this.renderedList()}</div>
-            </div>
-        )
+            )
+        }
+        else {
+            return (
+                <div className="pageWrapper">
+                    <div className="ui icon input searchBar">
+                        <input type='text' placeholder='Search items...' value={this.state.inputValue}
+                               onChange={this.filterList}/>
+                        <i aria-hidden="true" className="search icon"/>
+                    </div>
+                    <div className="productList">{this.renderedList()}</div>
+                </div>
+            )
+        }
     }
 
     filterList = (searchTerm) =>{

@@ -14,9 +14,11 @@ function dataReducer(state = initialState, action){
         case "ADD_PRODUCT":
             return state.concat(action.data);
 
-        // case "ADD_CART":
-        //
-        //
+        case "ADD_CART":
+            state = [];
+            console.log(state.concat(action.data));
+            return state.concat(action.data);
+
         // case "DELETE_CART":
         //
 

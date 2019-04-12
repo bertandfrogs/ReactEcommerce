@@ -4,6 +4,7 @@ import store from './store';
 import { Redirect } from 'react-router-dom'
 
 class ProductDetail extends Component {
+
     details() {
         const { match: { params } } = this.props;
         let productId = params.id;
@@ -20,14 +21,19 @@ class ProductDetail extends Component {
                     <p>Price: ${productData.price}</p>
                     <p>Star Rating: {productData.rating} / 5 </p>
                     <p>Percentage Rating: {Math.round(100* productData.rating / 5)}%</p>
-                    <button className="cartButton" onClick={this.addProductToCart}>Add To Cart</button>
+                    <button className="cartButton" onClick={this.addProductToCart(productId)}>Add To Cart</button>
                 </div>
             </div>
         );
     }
 
-    addProductToCart(){
-
+    addProductToCart(productId){
+        return(
+            () => {
+                console.log("add product " + productId + " to cart");
+                // store.dispatch({type: "ADD_PRODUCT", data: productId});
+            }
+        )
     }
 
     render(){
