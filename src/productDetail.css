@@ -1,0 +1,39 @@
+.productImg{
+    /*padding: 2%;*/
+    object-fit: contain;
+    height: auto;
+    max-height: 80vmin;
+    width: 100%;
+    max-width: 50vmax;
+}
+
+.page{
+    /*padding: 2%;*/
+    display: flex;
+}
+
+.right{
+    width: 50%;
+    padding: 3%;
+}
+
+.left{
+    width: 50%;
+    padding: 3%;
+}
+
+.cartButton{
+    padding: 5px;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.cartButton:focus{
+    outline: 0;
+}
+
+.title{
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}

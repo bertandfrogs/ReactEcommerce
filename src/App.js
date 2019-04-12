@@ -3,23 +3,22 @@ import './App.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import ProductList from './productList';
 import ProductDetail from "./productDetail";
-
-function Cart() {
-  return <h2>Cart</h2>;
-}
+import Cart from './cart.js'
 
 function App() {
   return (
-      <Router>
-        <div className="links">
-          <div className="link"><Link to="/">Products</Link></div>
-          <div className="link"><Link to="/cart/">Cart</Link></div>
-        </div>
+      <div className="">
+          <Router>
+            <div className="ui inverted menu">
+              <Link to="/" className="item">Products</Link>
+              <Link to="/cart/" className="item">Cart</Link>
+            </div>
 
-          <Route path="/" exact component={ProductList} />
-          <Route path="/details/:id" component={ProductDetail} />
-          <Route path="/cart/" component={Cart} />
-      </Router>
+            <Route path="/" exact component={ProductList} />
+            <Route path="/details/:id" component={ProductDetail} />
+            <Route path="/cart/" component={Cart} />
+          </Router>
+      </div>
   );
 }
 

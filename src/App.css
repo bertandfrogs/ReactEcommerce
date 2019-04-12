@@ -1,12 +1,7 @@
-.links{
-    display: flex;
-    height: 50px;
+.menu{
+    border-radius: 0;
 }
 
-.link{
-    padding: 5px;
-}
-
-Link{
-    text-decoration: none;
+.ui.menu {
+    border-radius: 0 !important;
 }
