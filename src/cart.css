@@ -1,0 +1,28 @@
+.cartItem{
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid lightgray;
+}
+
+.itemPic, .itemInfo{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+.img{
+    object-fit: contain;
+    height: 200px;
+    width: 200px;
+}
+
+.itemInfo{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+button:hover{
+    cursor: pointer;
+}
