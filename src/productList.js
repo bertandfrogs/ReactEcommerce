@@ -12,20 +12,30 @@ class ProductList extends Component {
         list: []
     };
 
+    //store.getState()[0].products
+
     componentDidMount() {
+        const CancelToken = axios.CancelToken;
+        const source = CancelToken.source();
+
         store.subscribe(() => this.forceUpdate());
-        if(store.getState().length === 0) {
-            axios.get('https://my-json-server.typicode.com/tdmichaelis/json-api/products')
+        if(store.getState()[0].products.length === 0) {
+            axios.get('https://my-json-server.typicode.com/tdmichaelis/json-api/products',
+                {
+                    CancelToken: source.token
+                })
                 .then(response => {
                     // handle success
                     store.dispatch({type: "ADD_PRODUCT", data: response.data});
                 });
+            source.cancel();
+            console.log('canceled');
+
         }
     }
 
     renderedList(){
-
-        initialList = store.getState();
+        initialList = store.getState()[0].products;
 
         if(this.state.list.length === 0 && this.state.inputValue === ""){
 
@@ -42,9 +52,9 @@ class ProductList extends Component {
             });
         }
         else{
-            return this.state.list.map(product => {
+            return this.state.list.map((product, index) => {
                 return (
-                    <div key={product.id} id={product.id} className="product">
+                    <div key={index} id={product.id} className="product">
                         <Link to={'/details/' + product.id}>
                             <img className="img" src={product.img} alt={product.title}/>
                         </Link>
