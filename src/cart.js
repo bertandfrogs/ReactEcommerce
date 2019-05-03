@@ -5,7 +5,9 @@ import {Link, Redirect} from "react-router-dom";
 
 
 class Cart extends Component {
-
+    componentDidMount(){
+        store.subscribe(() => this.forceUpdate());
+    }
     render(){
         if(store.getState()[0].products.length === 0){
             return <Redirect to='/'/>
@@ -19,7 +21,6 @@ class Cart extends Component {
                         </div>
                         <div className="itemInfo">
                             <div>{product.title}</div>
-                            <div>{product.id}</div>
                             <div>${product.price}</div>
                             <div className='buttons'>
                                 <Link to={'/details/' + product.id}>
@@ -37,6 +38,7 @@ class Cart extends Component {
     removeFromCart(product, i){
         return () => {
             console.log('delete product ' + product.id + ' at index ' + i);
+            store.dispatch({type: 'DELETE_CART', data: [product.id, i]});
         }
     }
 }

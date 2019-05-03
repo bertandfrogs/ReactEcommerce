@@ -1,9 +1,5 @@
 import {createStore} from "redux";
 
-// const initialState = [{products: []}, {cart: []}];
-//
-// const initialState = [];
-
 const initialState = [
     {
         products: [],
@@ -25,19 +21,18 @@ function dataReducer(state = initialState, action){
             console.log(state);
             return state;
 
-        // case "DELETE_CART":
-        //
+        case "DELETE_CART":
+            let itemid = action.data[0];
+            let pos = action.data[1];
+            console.log(state[0].cart);
+            console.log('product to delete', itemid);
+            console.log('delete index', pos);
+            state[0].cart.splice(pos, 1);
+            return state;
         default:
             return state;
     }
 }
-
-// function addProduct(data){
-//     return {
-//         data: data,
-//         type: "ADD_PRODUCT"
-//     }
-// }
 
 const store = createStore(dataReducer);
 
